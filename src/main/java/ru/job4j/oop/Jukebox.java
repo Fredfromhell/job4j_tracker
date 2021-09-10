@@ -5,13 +5,17 @@ public class Jukebox {
         if (position == 1) {
             System.out.println("Пусть бегут неуклюже");
         } else {
-            System.out.println(position == 2 ? "Спокойной ночи" : "Песня не найдена");
+            if (position != 2) {
+                System.out.println("Песня не найдена");
+            } else {
+                System.out.println("Спокойной ночи");
+            }
         }
     }
 
     public static void main(String[] args) {
         Jukebox forKids = new Jukebox();
-        int song = 5;
+        int song = 2;
         forKids.music(song);
     }
 }
