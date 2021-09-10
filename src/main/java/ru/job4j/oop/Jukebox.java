@@ -4,21 +4,14 @@ public class Jukebox {
     public void music(int position) {
         if (position == 1) {
             System.out.println("Пусть бегут неуклюже");
-        }
-        else {
-            if (position == 2)
-                System.out.println("Спокойной ночи");
-            else {
-                System.out.println("Песня не найдена");
-            }
-
+        } else {
+            System.out.println(position == 2 ? "Спокойной ночи" : "Песня не найдена");
         }
     }
 
-
     public static void main(String[] args) {
         Jukebox forKids = new Jukebox();
-        int song = 2;
+        int song = 5;
         forKids.music(song);
     }
 }
