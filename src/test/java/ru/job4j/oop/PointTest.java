@@ -14,7 +14,7 @@ public class PointTest {
         double rsl = x.distance(y);
         ;
         double expected = 2.0;
-        Assert.assertEquals(expected, rsl, 4);
+        Assert.assertEquals(expected, rsl, 0.1);
 
     }
 
@@ -24,8 +24,8 @@ public class PointTest {
         Point y = new Point(3, 4);
         double rsl = x.distance(y);
         ;
-        double expected = 2.8284271247461903;
-        Assert.assertEquals(expected, rsl, 4);
+        double expected = 2.83;
+        Assert.assertEquals(expected, rsl, 0.01);
 
     }
 
@@ -35,8 +35,8 @@ public class PointTest {
         Point y = new Point(3, 4, 5);
         double rsl = x.distance3d(y);
         ;
-        double expected = 3.4641016151377544;
-        Assert.assertEquals(expected, rsl, 4);
+        double expected = 3.46;
+        Assert.assertEquals(expected, rsl, 0.01);
 
 
     }
