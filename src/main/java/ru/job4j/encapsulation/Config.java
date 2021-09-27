@@ -9,7 +9,7 @@ public class Config {
         this.name = name;
     }
 
-    void print() {
+    public void print() {
         System.out.println(position);
     }
 
@@ -17,7 +17,7 @@ public class Config {
         return search(key);
     }
 
-    public String search(String key) {
+    private String search(String key) {
         return key;
     }
 }
