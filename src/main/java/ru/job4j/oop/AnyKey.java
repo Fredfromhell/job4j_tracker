@@ -1,12 +1,11 @@
 package ru.job4j.oop;
 
-public class AnyKey extends Engineer {
+public class AnyKey  {
 
     private boolean installation;
 
     public AnyKey(String name, String surname,
                   String education, String birthday, String typeOfWork, boolean installation) {
-        super(name, surname, education, birthday, typeOfWork);
         this.installation = installation;
     }
 
