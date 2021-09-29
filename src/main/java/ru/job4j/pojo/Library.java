@@ -32,7 +32,7 @@ public class Library {
         System.out.println(System.lineSeparator() + "Third cycle" + System.lineSeparator());
 
         for (Book book : books) {
-            if (book.equals(cleanCode)) {
+            if ("Clean code".equals(book.getName())) {
                 System.out.println(book.getName() + " - " + book.getPages());
             }
 
