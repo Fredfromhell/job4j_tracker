@@ -50,17 +50,13 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        boolean rsl;
         int index = indexOf(id);
-        if (index == -1) {
-            rsl = false;
-        } else {
-            int oldID = items[index].getId();
-            item.setId(oldID);
+        if (index != -1) {
+            item.setId(id);
             items[index] = item;
-            rsl = true;
         }
-        return rsl;
+
+        return index != -1;
     }
 
     public static void main(String[] args) {
@@ -77,6 +73,6 @@ public class Tracker {
 
         System.out.println(Arrays.toString(tracker.findAll()));
         System.out.println(Arrays.toString(tracker.findByName("first")));
-        System.out.println(tracker.replace(3, new Item("Проверка", 10)));
+        System.out.println(tracker.replace(1, new Item("Проверка", 10)));
     }
 }
