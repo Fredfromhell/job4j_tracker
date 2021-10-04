@@ -59,6 +59,16 @@ public class Tracker {
         return index != -1;
     }
 
+    public boolean delete(int id) {
+    int index = indexOf(id);
+    if (index != -1) {
+        System.arraycopy(items, index + 1, items, index, size - index - 1);
+        items[size - 1] = null;
+        size--;
+    }
+        return index != -1;
+    }
+
     public static void main(String[] args) {
         Tracker tracker = new Tracker();
         Item first = new Item("first");
@@ -74,5 +84,6 @@ public class Tracker {
         System.out.println(Arrays.toString(tracker.findAll()));
         System.out.println(Arrays.toString(tracker.findByName("first")));
         System.out.println(tracker.replace(1, new Item("Проверка", 10)));
+        System.out.println(tracker.delete(3));
     }
 }
