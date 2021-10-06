@@ -12,11 +12,22 @@ public class Matches {
             String player = turn ? "Первый игрок" : "Второй игрок";
             System.out.println(player + " введите число от 1 до 3:");
             int matches = Integer.parseInt(input.nextLine());
-            turn = !turn;
-            /* Остальная логика игры. */
-            System.out.println(player + " Вытащил " + matches + " спичек . "
-                    + "Осталось " + (count - matches) + " спичек .");
-            count -= matches;
+            if (matches > 0 && matches <= 3) {
+                if (count - matches < 0) {
+                    System.out.println("Нельзя взять больше " + count + " спичек.");
+                } else {
+                    turn = !turn;
+
+                    /* Остальная логика игры. */
+                    System.out.println(player + " Вытащил " + matches + " спичек . "
+                            + "Осталось " + (count - matches) + " спичек.");
+                    count -= matches;
+                }
+
+            } else {
+
+                System.out.println("Ошибка ввода, введите число от 1 до 3");
+            }
         }
         if (!turn) {
             System.out.println("Выиграл первый игрок");
