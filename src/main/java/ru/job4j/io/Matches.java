@@ -17,15 +17,12 @@ public class Matches {
                     System.out.println("Нельзя взять больше " + count + " спичек.");
                 } else {
                     turn = !turn;
-
-                    /* Остальная логика игры. */
                     System.out.println(player + " Вытащил " + matches + " спичек . "
                             + "Осталось " + (count - matches) + " спичек.");
                     count -= matches;
                 }
 
             } else {
-
                 System.out.println("Ошибка ввода, введите число от 1 до 3");
             }
         }
