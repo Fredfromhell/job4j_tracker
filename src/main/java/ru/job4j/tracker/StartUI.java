@@ -10,6 +10,7 @@ public class StartUI {
             showMenu();
             System.out.print("Select: ");
             int select = Integer.parseInt(scanner.nextLine());
+            System.out.println("Пользователь выбрал: " + select);
             if (select == 0) {
                 System.out.println("=== Create a new Item ====");
                 System.out.print("Enter name: ");
