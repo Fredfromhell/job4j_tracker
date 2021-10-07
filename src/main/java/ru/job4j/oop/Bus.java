@@ -1,14 +1,10 @@
 package ru.job4j.oop;
 
-public class Bus  {
+public class Bus implements Vehicle {
 
-    private String timetable;
-
-    public Bus(String name, String surname, String education, String birthday, String car, String timetable) {
-        this.timetable = timetable;
-    }
-
-    public String getTimetable() {
-        return timetable;
+    @Override
+    public void move() {
+        System.out.println(getClass().getSimpleName()
+                + " автобус двигается по скоростным трассам.");
     }
 }
