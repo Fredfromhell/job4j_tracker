@@ -10,6 +10,6 @@ public class FactRec {
 
     public static void main(String[] args) {
         int rsl = calc(15);
-        System.out.println(rsl) ;
+        System.out.println(rsl);
     }
 }

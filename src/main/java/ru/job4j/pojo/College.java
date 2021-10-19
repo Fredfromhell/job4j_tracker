@@ -10,8 +10,9 @@ public class College {
         student.setGrup("Java");
         student.setDateIn(new Date());
 
-        System.out.println(student.getFio() + System.lineSeparator() + student.getGrup() + System.lineSeparator()
-        + student.getDateIn());
+        System.out.println(student.getFio() + System.lineSeparator()
+                + student.getGrup() + System.lineSeparator()
+                + student.getDateIn());
     }
 
 }
