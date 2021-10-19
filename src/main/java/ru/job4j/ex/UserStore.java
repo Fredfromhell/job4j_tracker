@@ -7,12 +7,13 @@ public class UserStore {
         for (User user : users) {
             if (user.getUsername().equals(login)) {
                 rsl = user;
+                break;
             }
-            if (rsl == null) {
-                throw new UserNotFoundException("Пользователь не найден.");
-            }
-
         }
+        if (rsl == null) {
+            throw new UserNotFoundException("Пользователь не найден.");
+        }
+
         return rsl;
     }
 
@@ -21,12 +22,12 @@ public class UserStore {
             throw new UserInvalidException("Пользователь заблокирован.");
 
         }
-            return true;
+        return true;
     }
 
     public static void main(String[] args) {
         User[] users = {
-                new User("Pet", false)
+                new User("Pet", true)
         };
         try {
             User user = findUser(users, "Pet");
