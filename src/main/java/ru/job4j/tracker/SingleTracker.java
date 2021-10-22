@@ -5,13 +5,15 @@ public class SingleTracker {
     private static SingleTracker instance = null;
     private Tracker tracker = new Tracker();
 
+    private SingleTracker() {
+    }
+
     public static SingleTracker getInstance() {
         if (instance == null) {
             instance = new SingleTracker();
         }
         return instance;
     }
-    /* реализовать singleton */
 
     public Item add(Item item) {
         return tracker.add(item);
@@ -36,6 +38,4 @@ public class SingleTracker {
     public boolean delete(int id) {
         return tracker.delete(id);
     }
-
-    /* Остальные методы из класса Tracker. */
 }
