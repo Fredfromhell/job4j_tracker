@@ -7,8 +7,8 @@ public class DummyDic {
 
     public static void main(String[] args) {
         DummyDic dictinory = new DummyDic();
-        String rsl = "Java";
-        System.out.println(dictinory.engToRus(rsl));
+        String rsl = dictinory.engToRus("Java");
+        System.out.println(rsl);
 
     }
 }
