@@ -8,15 +8,27 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            if (task.getPriority() < element.getPriority()) {
-                this.tasks.add(index, task);
-                break;
-            }
+                if (task.getPriority() < element.getPriority()) {
+                    break;
+                }
             index++;
+            }
+        this.tasks.add(index, task);
+
         }
+
+        public Task take() {
+        return tasks.poll();
     }
 
-    public Task take() {
-        return tasks.poll();
+    public static void main(String[] args) {
+        PriorityQueue test = new PriorityQueue();
+        test.put(new Task("low", 5));
+        test.put(new Task("urgent", 1));
+        test.put(new Task("middle", 2));
+        for (Task rsl: test.tasks) {
+            System.out.println(rsl.getPriority());
+
+        }
     }
 }
