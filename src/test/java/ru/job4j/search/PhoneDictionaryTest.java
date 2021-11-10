@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
 import org.junit.Test;
-import ru.job4j.ex.UserNotFoundException;
 
 import java.util.ArrayList;
 
@@ -11,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class PhoneDictionaryTest {
     @Test
-    public void whenFindByName() throws UserNotFoundException {
+    public void whenFindByName() {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
@@ -22,7 +21,7 @@ public class PhoneDictionaryTest {
     }
 
     @Test
-    public void whenDontFind() throws UserNotFoundException {
+    public void whenDontFind() {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
