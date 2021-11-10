@@ -1,7 +1,5 @@
 package ru.job4j.search;
 
-import ru.job4j.ex.UserNotFoundException;
-
 import java.util.ArrayList;
 
 public class PhoneDictionary {
@@ -11,7 +9,7 @@ public class PhoneDictionary {
         this.persons.add(person);
     }
 
-    public ArrayList<Person> find(String key) throws UserNotFoundException {
+    public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
         for (Person person : persons) {
             if (person.getName().contains(key) || person.getPhone().contains(key)
