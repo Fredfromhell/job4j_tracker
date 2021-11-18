@@ -1,26 +1,28 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final ArrayList<Item> items = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
-        items[size++] = item;
+        items.add(item);
+        size++;
         return item;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(items, size);
+    public ArrayList<Item> findAll() {
+        return items;
     }
 
     private int indexOf(int id) {
         int rsl = -1;
         for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
+            if (items.get(index).getId() == id) {
                 rsl = index;
                 break;
             }
@@ -32,14 +34,14 @@ public class Tracker {
         /* Находим индекс */
         int index = indexOf(id);
         /* Если индекс найден возвращаем item, иначе null */
-        return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(index) : null;
     }
 
     public Item[] findByName(String key) {
-        Item[] allItem = new Item[items.length];
+        Item[] allItem = new Item[items.size()];
         int count = 0;
         for (int index = 0; index < size; index++) {
-            Item test = items[index];
+            Item test = items.get(index);
             if (test.getName().equals(key)) {
                 allItem[count] = test;
                 count++;
@@ -54,38 +56,20 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             item.setId(id);
-            items[index] = item;
+            items.set(index, item);
         }
 
         return rsl;
     }
 
     public boolean delete(int id) {
-    int index = indexOf(id);
-    boolean rsl = index != -1;
-    if (rsl) {
-        System.arraycopy(items, index + 1, items, index, size - index - 1);
-        items[size - 1] = null;
-        size--;
-    }
+        int index = indexOf(id);
+        boolean rsl = index != -1;
+        if (rsl) {
+            items.remove(index);
+            size--;
+        }
         return rsl;
     }
-
-    public static void main(String[] args) {
-        Tracker tracker = new Tracker();
-        Item first = new Item("first");
-        Item second = new Item("second");
-        tracker.add(first);
-        tracker.add(first);
-        tracker.add(first);
-        tracker.add(second);
-        tracker.add(new Item("first"));
-        tracker.add(new Item("second"));
-        tracker.add(new Item("first"));
-
-        System.out.println(Arrays.toString(tracker.findAll()));
-        System.out.println(Arrays.toString(tracker.findByName("first")));
-        System.out.println(tracker.replace(1, new Item("Проверка", 10)));
-        System.out.println(tracker.delete(3));
-    }
 }
+
