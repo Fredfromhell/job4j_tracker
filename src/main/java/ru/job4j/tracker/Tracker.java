@@ -2,26 +2,25 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Tracker {
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
     private int ids = 1;
-    private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
         items.add(item);
-        size++;
         return item;
     }
 
-    public ArrayList<Item> findAll() {
-        return items;
+    public List<Item> findAll() {
+        return List.copyOf(items);
     }
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
+        for (int index = 0; index < items.size(); index++) {
             if (items.get(index).getId() == id) {
                 rsl = index;
                 break;
@@ -31,24 +30,18 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        /* Находим индекс */
         int index = indexOf(id);
-        /* Если индекс найден возвращаем item, иначе null */
         return index != -1 ? items.get(index) : null;
     }
 
-    public Item[] findByName(String key) {
-        Item[] allItem = new Item[items.size()];
-        int count = 0;
-        for (int index = 0; index < size; index++) {
-            Item test = items.get(index);
+    public List<Item> findByName(String key) {
+        List<Item> allItem = new ArrayList<>();
+        for (Item test : items) {
             if (test.getName().equals(key)) {
-                allItem[count] = test;
-                count++;
+                allItem.add(test);
             }
         }
-        allItem = Arrays.copyOf(allItem, count);
-        return allItem;
+        return List.copyOf(allItem);
     }
 
     public boolean replace(int id, Item item) {
@@ -67,7 +60,6 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             items.remove(index);
-            size--;
         }
         return rsl;
     }
