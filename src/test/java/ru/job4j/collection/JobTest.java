@@ -12,7 +12,7 @@ public class JobTest {
     public void whenCompatorByNameAndPrority() {
         Comparator<Job> cmpNamePriority = new JobPriorityUp().thenComparing(new JobUp());
         int rsl = cmpNamePriority.compare(
-                new Job("Impl task", 1),
+                new Job("Impl task", 0),
                 new Job("Fix bug", 0)
         );
         assertThat(rsl, greaterThan(0));
