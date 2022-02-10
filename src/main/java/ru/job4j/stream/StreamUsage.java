@@ -20,8 +20,8 @@ public class StreamUsage {
                 new Task("Bug #3", 40)
         );
         tasks.stream().
-                filter(task -> task.name.contains("Bug") & task.spent > 30).
-                map(task -> task.name + " " + task.spent).
-                forEach(System.out::println);
+                filter(task -> task.name.contains("Bug") && task.spent > 30)
+                .map(task -> task.name + " " + task.spent)
+                .forEach(System.out::println);
     }
 }
