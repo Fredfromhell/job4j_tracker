@@ -7,7 +7,7 @@ public class PriorityQueue {
 
     public void put(Task task) {
         int index = 0;
-        for (Task element : tasks) {
+        for (var element : tasks) {
                 if (task.getPriority() < element.getPriority()) {
                     break;
                 }
@@ -22,11 +22,11 @@ public class PriorityQueue {
     }
 
     public static void main(String[] args) {
-        PriorityQueue test = new PriorityQueue();
+        var test = new PriorityQueue();
         test.put(new Task("low", 5));
         test.put(new Task("urgent", 1));
         test.put(new Task("middle", 2));
-        for (Task rsl: test.tasks) {
+        for (var rsl: test.tasks) {
             System.out.println(rsl.getPriority());
 
         }
