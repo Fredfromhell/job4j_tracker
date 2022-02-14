@@ -22,6 +22,6 @@ public class Card {
     }
 
     public static void main(String[] args) {
-        Stream.of(Suit.values()).flatMap(suit -> Stream.of(Value.values())).map(value -> value + suit).forEach(System.out::println);
+        Stream.of(Suit.values()).flatMap(suit -> Stream.of(Value.values())).map(value -> value).forEach(System.out::println);
     }
 }
