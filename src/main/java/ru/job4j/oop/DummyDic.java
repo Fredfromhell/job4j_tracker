@@ -6,9 +6,8 @@ public class DummyDic {
     }
 
     public static void main(String[] args) {
-        DummyDic dictinory = new DummyDic();
-        String rsl = dictinory.engToRus("Java");
-        System.out.println(rsl);
+        DummyDic dictionary = new DummyDic();
+        System.out.println(dictionary.engToRus("Java"));
 
     }
 }
