@@ -34,7 +34,7 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public Item add(Item item) throws SQLException {
+    public Item add(Item item)  {
         try (PreparedStatement ps =
                      cn.prepareStatement("insert into items (name, created) values (?, ?)",
                              Statement.RETURN_GENERATED_KEYS)) {
@@ -46,36 +46,43 @@ public class SqlTracker implements Store, AutoCloseable {
                     item.setId(generatedKeys.getInt(1));
                 }
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return item;
     }
 
     @Override
-    public boolean replace(int id, Item item) throws SQLException {
-        boolean rsl;
+    public boolean replace(int id, Item item) {
+        boolean rsl = false;
         try (PreparedStatement ps =
                      cn.prepareStatement("update items set name = ?, created = ? where id = ?")) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             ps.setInt(3, id);
             rsl = ps.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
+    
         return rsl;
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
-        boolean rsl;
+    public boolean delete(int id)  {
+        boolean rsl = false;
         try (PreparedStatement ps =
                      cn.prepareStatement("delete from items where id = ?")) {
             ps.setInt(1, id);
             rsl = ps.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return rsl;
     }
 
     @Override
-    public List<Item> findAll() throws SQLException {
+    public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement ps = cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = ps.executeQuery()) {
@@ -84,13 +91,15 @@ public class SqlTracker implements Store, AutoCloseable {
                 }
 
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return items;
 
     }
 
     @Override
-    public List<Item> findByName(String key) throws SQLException {
+    public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement ps = cn.prepareStatement("select * from items where name = ?")) {
             ps.setString(1, key);
@@ -100,6 +109,8 @@ public class SqlTracker implements Store, AutoCloseable {
                 }
 
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return items;
 
