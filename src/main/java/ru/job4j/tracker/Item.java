@@ -24,6 +24,12 @@ public class Item {
         this.id = id;
     }
 
+    public Item(int id, String name, LocalDateTime created) {
+        this.id = id;
+        this.name = name;
+        this.created = created;
+    }
+
     public LocalDateTime getCreated() {
         return created;
     }
@@ -38,6 +44,10 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     public void setName(String name) {

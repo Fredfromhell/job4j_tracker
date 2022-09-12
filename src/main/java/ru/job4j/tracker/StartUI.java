@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 public class StartUI {
@@ -10,7 +10,7 @@ public class StartUI {
         StartUI.out = out;
     }
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Store memTracker, List<UserAction> actions) throws SQLException {
         boolean run = true;
         while (run) {
             StartUI.showMenu(actions);
@@ -20,7 +20,7 @@ public class StartUI {
                 continue;
             }
             UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+            run = action.execute(input, memTracker);
         }
     }
 
@@ -31,20 +31,22 @@ public class StartUI {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
-        Tracker tracker = new Tracker();
-        List<UserAction> actions = List.of(
-                new CreateAction(output),
-                new AllItems(output),
-                new EditItem(output),
-                new DeleteItem(output),
-                new FindItemId(output),
-                new FindItemName(output),
-                new Exit()
-        );
-
-        new StartUI(output).init(input, tracker, actions);
+        try (SqlTracker memTracker = new SqlTracker()) {
+            memTracker.init();
+                    List<UserAction> actions = List.of(
+                    new CreateAction(output),
+                    new AllItems(output),
+                    new EditItem(output),
+                    new DeleteItem(output),
+                    new FindItemId(output),
+                    new FindItemName(output),
+                    new Exit()
+            );
+            new StartUI(output).init(input, memTracker, actions);
+        }
     }
+
 }
